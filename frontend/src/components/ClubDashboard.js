@@ -1,9 +1,11 @@
 // src/components/ClubDashboard.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function ClubDashboard() {
   const [services, setServices] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -15,37 +17,32 @@ function ClubDashboard() {
     fetchServices();
   }, []);
 
+  const handleAddService = () => {
+    navigate('/club/add-service');
+  };
+
+  const handleOrders = () => {
+    navigate('/club/orders');
+  };
+
+  const handleProfile = () => {
+    navigate('/club/profile');
+  };
+
   return (
     <div>
-      <h2>Your Services</h2>
-      <a href="/club/add-service">Add Service</a>
+      <h2>Club Dashboard</h2>
+      <button onClick={handleOrders}>View Orders</button>
+      <button onClick={handleProfile}>Edit Profile</button>
+      <h3>Current Services</h3>
       <ul>
         {services.map((service) => (
-          <li key={service.id}>
-            {service.name} -{' '}
-            <button onClick={() => toggleService(service.id)}>
-              {service.active ? 'Deactivate' : 'Activate'}
-            </button>
-            <button onClick={() => removeService(service.id)}>Remove</button>
-          </li>
+          <li key={service.id}>{service.name}</li>
         ))}
       </ul>
+      <button onClick={handleAddService}>Add Service</button>
     </div>
   );
-
-  async function toggleService(serviceId) {
-    await axios.put(`/club/services/${serviceId}/toggle`, {}, {
-      headers: { Authorization: localStorage.getItem('token') },
-    });
-    // Refresh services list
-  }
-
-  async function removeService(serviceId) {
-    await axios.delete(`/club/services/${serviceId}`, {
-      headers: { Authorization: localStorage.getItem('token') },
-    });
-    // Refresh services list
-  }
 }
 
 export default ClubDashboard;

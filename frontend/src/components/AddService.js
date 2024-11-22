@@ -1,9 +1,11 @@
 // src/components/AddService.js
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-function AddService({ history }) {
+function AddService() {
   const [formData, setFormData] = useState({ name: '', description: '', price: '', imageUrl: '' });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,7 +18,7 @@ function AddService({ history }) {
         headers: { Authorization: localStorage.getItem('token') },
       });
       alert('Service added successfully!');
-      history.push('/club/dashboard');
+      navigate('/club/dashboard');
     } catch (err) {
       alert(err.response.data.error);
     }

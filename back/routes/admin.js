@@ -1,4 +1,3 @@
-// routes/admin.js
 const express = require('express');
 const router = express.Router();
 const db = require('../config/db');
@@ -39,10 +38,15 @@ router.delete('/clubs/:clubId', async (req, res) => {
   }
 });
 
-// Get list of users
+// Get list of users with additional club details if role is club
 router.get('/users', async (req, res) => {
   try {
-    const [users] = await db.execute('SELECT id, username, role FROM users');
+    const [users] = await db.execute(`
+      SELECT users.id, users.username, users.role, 
+             clubs.name AS club_name, clubs.description, clubs.contact_email
+      FROM users
+      LEFT JOIN clubs ON users.id = clubs.user_id
+    `);
     res.json(users);
   } catch (err) {
     res.status(500).json({ error: err.message });

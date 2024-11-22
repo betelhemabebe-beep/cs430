@@ -22,6 +22,16 @@ router.use(async (req, res, next) => {
   }
 });
 
+// Get all services for the club (missing route)
+router.get('/services', async (req, res) => {
+  try {
+    const [services] = await db.execute('SELECT * FROM services WHERE club_id = ?', [req.club.id]);
+    res.json(services);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Add a service
 router.post('/services', async (req, res) => {
   const { name, description, price, imageUrl } = req.body;
