@@ -37,7 +37,7 @@ function OrderPage() {
         { headers: { Authorization: localStorage.getItem('token') } }
       );
       alert('Thank you for your order!');
-      setTimeout(() => navigate('/student/orders'), 5000);
+      setTimeout(() => navigate('/student/orders'), 5001);
     } catch (err) {
       console.error('Error placing order:', err);
       alert(err.response?.data?.error || 'An error occurred while placing the order');

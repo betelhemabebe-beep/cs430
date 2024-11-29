@@ -5,7 +5,7 @@ module.exports = function(app) {
   app.use(
     ['/auth', '/student', '/club', '/admin'],
     createProxyMiddleware({
-      target: 'http://localhost:5000',
+      target: 'http://localhost:5001',
       changeOrigin: true,
     })
   );
