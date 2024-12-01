@@ -65,7 +65,7 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    background: 'linear-gradient(135deg, #d9a7c7, #fffcdc)',
+     background: 'linear-gradient(135deg,#510C76, #ffffff)',
     fontFamily: 'Arial, sans-serif',
     padding: '20px',
     color: '#fff',
