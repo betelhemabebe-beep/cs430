@@ -141,9 +141,9 @@ const styles = {
     fontSize: '18px',
     margin: '10px 0',
   },
-  logoutButton: {
+ logoutButton: {
     padding: '10px',
-    backgroundColor: '#ff5f5f',
+    backgroundColor: '#800080',
     color: '#fff',
     border: 'none',
     cursor: 'pointer',
