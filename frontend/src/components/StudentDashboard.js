@@ -98,8 +98,8 @@ const styles = {
     marginBottom: '20px',
   },
   welcome: {
-    fontSize: '24px',
-    color: '#333',
+    fontSize: '21px',
+    color: '#080808',
     marginLeft: '10px',
   },
   orderButton: {
