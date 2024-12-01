@@ -1,4 +1,3 @@
-// src/components/HomePage.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -6,26 +5,21 @@ function HomePage() {
   return (
     <div style={styles.homepage}>
       <h1 style={styles.header}>Truman Club Delivery</h1>
-      <div style={styles.roleSelection}>
+      <div style={styles.roleSelectionCentered}>
         <Link to="/register/student" style={styles.link}>
-          <div style={styles.card}>
+          <div style={styles.cardLarge}>
             <h2>Student</h2>
-            <p>Sign up or log in as a student to browse and order services.</p>
           </div>
         </Link>
         <Link to="/register/club" style={styles.link}>
-          <div style={styles.card}>
+          <div style={styles.cardLarge}>
             <h2>Club</h2>
-            <p>Register your club to offer services or log in if you already have an account.</p>
-          </div>
-        </Link>
-        <Link to="/admin/login" style={styles.link}>
-          <div style={styles.card}>
-            <h2>Admin</h2>
-            <p>Admin access for managing clubs and students.</p>
           </div>
         </Link>
       </div>
+      <Link to="/admin/login" style={styles.adminLink}>
+        <h3>Admin</h3>
+      </Link>
     </div>
   );
 }
@@ -33,33 +27,50 @@ function HomePage() {
 const styles = {
   homepage: {
     textAlign: 'center',
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    background: 'linear-gradient(135deg, #d9a7c7, #fffcdc)',
+    color: '#fff',
+    fontFamily: 'Arial, sans-serif',
+    padding: '20px',
   },
   header: {
-    fontSize: '2em',
-    margin: '20px 0',
+    fontSize: '4.5em',
+    marginTop: '20px',
+    marginBottom: '60px',
+    color: '#800080',
   },
-  roleSelection: {
+  roleSelectionCentered: {
     display: 'flex',
     justifyContent: 'center',
-    gap: '20px',
+    gap: '60px',
     marginTop: '20px',
   },
   link: {
     textDecoration: 'none',
     color: 'inherit',
   },
-  card: {
-    border: '1px solid #ddd',
-    padding: '20px',
-    width: '200px',
-    borderRadius: '8px',
+  cardLarge: {
+    border: '1px solid rgba(255, 255, 255, 0.2)',
+    padding: '50px',
+    width: '300px',
+    borderRadius: '12px',
     textAlign: 'center',
-    backgroundColor: '#f9f9f9',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    transition: 'transform 0.2s',
+    backgroundColor: '#cbaacb',
+    boxShadow: '0 6px 16px rgba(0, 0, 0, 0.4)',
+    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+    cursor: 'pointer',
   },
-  cardHover: {
-    transform: 'scale(1.05)',
+  adminLink: {
+    position: 'absolute',
+    bottom: '10px',
+    right: '10px',
+    fontSize: '1em',
+    color: '#800080',
+    textDecoration: 'none',
   },
 };
 

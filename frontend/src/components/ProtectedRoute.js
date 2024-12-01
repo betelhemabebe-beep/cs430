@@ -1,7 +1,6 @@
-// src/components/ProtectedRoute.js
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode'; // Change this line
+import { jwtDecode } from 'jwt-decode';
 
 function ProtectedRoute({ children, role }) {
   const token = localStorage.getItem('token');
@@ -9,9 +8,10 @@ function ProtectedRoute({ children, role }) {
   const isAuthorized = () => {
     if (!token) return false;
     try {
-      const decoded = jwtDecode(token); // Use jwtDecode here instead of jwt_decode
-      return decoded.role === role;
+      const decoded = jwtDecode(token);
+      return decoded.type === role;
     } catch (err) {
+      console.error('Error decoding token:', err);
       return false;
     }
   };

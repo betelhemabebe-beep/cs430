@@ -1,4 +1,3 @@
-// src/components/ServiceList.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -12,10 +11,11 @@ function ServiceList() {
     const fetchServices = async () => {
       try {
         const res = await axios.get(`/student/clubs/${clubId}/services`, {
-          headers: { Authorization: localStorage.getItem('token') },
+          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         });
         setServices(res.data);
       } catch (err) {
+        console.error('Error fetching services:', err);
         alert('Error fetching services');
       }
     };
@@ -24,31 +24,124 @@ function ServiceList() {
 
   return (
     <div style={styles.container}>
-      <h2 style={styles.title}>Services</h2>
+      <div style={styles.header}>
+        <svg
+          onClick={() => navigate('/student/dashboard')}
+          style={styles.backIcon}
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+        <h2 style={styles.title}>Services</h2>
+      </div>
       <div style={styles.serviceList}>
-        {services.map((service) => (
-          <div
-            key={service.id}
-            style={styles.serviceCard}
-            onClick={() => navigate(`/student/services/${service.id}`)}
-          >
-            <h3 style={styles.serviceName}>{service.name}</h3>
-            <h3 style={styles.servicePrice}>{service.price}</h3>
-            <p style={styles.serviceDescription}>{service.description}</p>
-          </div>
-        ))}
+        {services.length === 0 ? (
+          <p style={styles.message}>No services available for this club.</p>
+        ) : (
+          services.map((service) => (
+            <div
+              key={service.id}
+              style={styles.serviceCard}
+              onClick={() => navigate(`/student/services/${service.id}`)}
+            >
+              {service.image_url && (
+                <img
+                  src={service.image_url}
+                  alt={service.name}
+                  style={styles.serviceImage}
+                />
+              )}
+              <h3 style={styles.serviceName}>{service.name}</h3>
+              <h3 style={styles.servicePrice}>${service.price}</h3>
+              <p style={styles.serviceDescription}>{service.description}</p>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
 }
 
 const styles = {
-  container: { padding: '20px' },
-  title: { fontSize: '24px', textAlign: 'center' },
-  serviceList: { display: 'flex', flexWrap: 'wrap', gap: '15px', justifyContent: 'center' },
-  serviceCard: { width: '200px', padding: '15px', boxShadow: '0 0 10px rgba(0,0,0,0.1)', cursor: 'pointer' },
-  serviceName: { fontSize: '18px', margin: '10px 0' },
-  serviceDescription: { color: '#555' },
+  container: {
+    textAlign: 'center',
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    background: 'linear-gradient(135deg, #d9a7c7, #fffcdc)',
+    color: '#fff',
+    fontFamily: 'Arial, sans-serif',
+    padding: '20px',
+  },
+  header: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: '20px',
+    position: 'relative',
+  },
+  backIcon: {
+    position: 'absolute',
+    left: '20px',
+    width: '24px',
+    height: '24px',
+    cursor: 'pointer',
+    color: '#fff',
+  },
+  title: {
+    fontSize: '2.5em',
+    marginBottom: '20px',
+    color: '#800080',
+    flex: 1,
+    textAlign: 'center',
+  },
+  serviceList: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '20px',
+    justifyContent: 'center',
+    width: '100%',
+    maxWidth: '1200px',
+  },
+  serviceCard: {
+    width: '250px',
+    padding: '20px',
+    borderRadius: '12px',
+    boxShadow: '0 6px 16px rgba(0, 0, 0, 0.2)',
+    backgroundColor: '#cbaacb',
+    color: '#800080',
+    cursor: 'pointer',
+    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+  },
+  serviceImage: {
+    width: '100%',
+    height: '150px',
+    objectFit: 'cover',
+    borderRadius: '12px 12px 0 0',
+    marginBottom: '10px',
+  },
+  serviceName: {
+    fontSize: '1.5em',
+    marginBottom: '10px',
+    fontWeight: 'bold',
+  },
+  servicePrice: {
+    fontSize: '1.2em',
+    color: '#800080',
+    fontWeight: 'bold',
+  },
+  serviceDescription: {
+    fontSize: '1em',
+    color: '#fff',
+  },
+  message: {
+    color: '#800080',
+    fontSize: '1.2em',
+  },
 };
 
 export default ServiceList;

@@ -1,4 +1,3 @@
-// src/components/RegisterClub.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -6,30 +5,45 @@ import { useNavigate } from 'react-router-dom';
 function RegisterClub() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    username: '',
+    requesterName: '',
     password: '',
     clubName: '',
     contactEmail: '',
-    description: ''
+    description: '',
+    clubImage: null,
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleFileChange = (e) => {
+    setFormData({ ...formData, clubImage: e.target.files[0] });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Submitting form with data:', formData);
+
+    if (!formData.contactEmail.endsWith('@truman.edu')) {
+      alert('Contact email must end with @truman.edu');
+      return;
+    }
+
+    const formDataToSubmit = new FormData();
+    formDataToSubmit.append('requesterName', formData.requesterName);
+    formDataToSubmit.append('clubName', formData.clubName);
+    formDataToSubmit.append('password', formData.password);
+    formDataToSubmit.append('contactEmail', formData.contactEmail);
+    formDataToSubmit.append('description', formData.description);
+    formDataToSubmit.append('clubImage', formData.clubImage);
 
     try {
-      if (!formData.username || !formData.password || !formData.clubName || !formData.contactEmail) {
-        alert('All required fields must be filled out.');
-        return;
-      }
-
-      await axios.post('/auth/register/club', formData);
+      await axios.post('/auth/register/club', formDataToSubmit, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
       alert('Club registration successful! Await admin approval.');
-      navigate('/login');
+      navigate('/login/club');
     } catch (err) {
       alert(err.response?.data?.error || 'An error occurred');
     }
@@ -37,12 +51,30 @@ function RegisterClub() {
 
   return (
     <div style={styles.container}>
+      <div style={styles.arrowContainer} onClick={() => navigate('/')}>
+        <svg
+          style={styles.arrowIcon}
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+      </div>
       <div style={styles.card}>
         <h2 style={styles.title}>Club Registration</h2>
         <form onSubmit={handleSubmit} style={styles.form}>
           <input
-            name="username"
-            placeholder="Username"
+            name="requesterName"
+            placeholder="Requester Name"
+            onChange={handleChange}
+            required
+            style={styles.input}
+          />
+          <input
+            name="clubName"
+            placeholder="Club Name"
             onChange={handleChange}
             required
             style={styles.input}
@@ -56,16 +88,9 @@ function RegisterClub() {
             style={styles.input}
           />
           <input
-            name="clubName"
-            placeholder="Club Name"
-            onChange={handleChange}
-            required
-            style={styles.input}
-          />
-          <input
             name="contactEmail"
             type="email"
-            placeholder="Contact Email"
+            placeholder="Contact Email (must end with @truman.edu)"
             onChange={handleChange}
             required
             style={styles.input}
@@ -76,10 +101,18 @@ function RegisterClub() {
             onChange={handleChange}
             style={styles.textarea}
           />
+          <input
+            type="file"
+            name="clubImage"
+            accept="image/*"
+            onChange={handleFileChange}
+            required
+            style={styles.input}
+          />
           <button type="submit" style={styles.button}>Sign Up</button>
         </form>
         <p style={styles.text}>
-          Already have an account? <a href="/login" style={styles.link}>Log in</a>
+          Already have an account? <a href="/login/club" style={styles.link}>Log in</a>
         </p>
       </div>
     </div>
@@ -92,20 +125,33 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     minHeight: '100vh',
-    backgroundColor: '#f4f4f9',
+    background: 'linear-gradient(135deg, #d9a7c7, #fffcdc)',
+    fontFamily: 'Arial, sans-serif',
+    position: 'relative',
+  },
+  arrowContainer: {
+    position: 'absolute',
+    top: '20px',
+    left: '20px',
+    cursor: 'pointer',
+  },
+  arrowIcon: {
+    width: '24px',
+    height: '24px',
+    color: '#fff',
   },
   card: {
     width: '400px',
     padding: '20px',
-    borderRadius: '8px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    backgroundColor: '#ffffff',
+    borderRadius: '12px',
+    boxShadow: '0 6px 16px rgba(0, 0, 0, 0.2)',
+    backgroundColor: '#cbaacb',
     textAlign: 'center',
   },
   title: {
     fontSize: '24px',
     marginBottom: '20px',
-    color: '#333',
+    color: '#800080',
   },
   form: {
     display: 'flex',
@@ -114,35 +160,40 @@ const styles = {
   input: {
     padding: '10px',
     marginBottom: '15px',
-    borderRadius: '4px',
-    border: '1px solid #ddd',
+    borderRadius: '8px',
+    border: '1px solid rgba(255, 255, 255, 0.5)',
     fontSize: '16px',
+    outline: 'none',
   },
   textarea: {
     padding: '10px',
     marginBottom: '15px',
-    borderRadius: '4px',
-    border: '1px solid #ddd',
+    borderRadius: '8px',
+    border: '1px solid rgba(255, 255, 255, 0.5)',
     fontSize: '16px',
     minHeight: '80px',
+    resize: 'none',
+    outline: 'none',
   },
   button: {
     padding: '10px',
     fontSize: '16px',
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#800080',
     color: '#ffffff',
     border: 'none',
-    borderRadius: '4px',
+    borderRadius: '8px',
     cursor: 'pointer',
     marginTop: '10px',
+    transition: 'background-color 0.3s ease',
   },
   text: {
     marginTop: '15px',
-    color: '#777',
+    color: '#fff',
   },
   link: {
-    color: '#4CAF50',
+    color: '#800080',
     textDecoration: 'none',
+    fontWeight: 'bold',
   },
 };
 
