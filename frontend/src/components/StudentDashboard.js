@@ -82,7 +82,7 @@ function StudentDashboard() {
 const styles = {
   container: {
     padding: '20px',
-    fontFamily: 'Arial, sans-serif',
+    fontFamily: 'Argent CF',
     background: 'linear-gradient(135deg,#510C76, #ffffff)',
     minHeight: '100vh',
     display: 'flex',
