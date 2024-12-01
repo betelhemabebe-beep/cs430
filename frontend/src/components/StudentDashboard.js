@@ -83,7 +83,7 @@ const styles = {
   container: {
     padding: '20px',
     fontFamily: 'Arial, sans-serif',
-    background: 'linear-gradient(135deg, #d9a7c7, #fffcdc)',
+    background: 'linear-gradient(135deg,#510C76, #ffffff)',
     minHeight: '100vh',
     display: 'flex',
     flexDirection: 'column',
