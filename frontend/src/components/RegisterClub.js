@@ -125,7 +125,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     minHeight: '100vh',
-    background: 'linear-gradient(135deg, #d9a7c7, #fffcdc)',
+    background: 'linear-gradient(135deg,#510C76, #ffffff)',
     fontFamily: 'Arial, sans-serif',
     position: 'relative',
   },
