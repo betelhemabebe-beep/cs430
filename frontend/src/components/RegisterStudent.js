@@ -84,7 +84,7 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     background: 'linear-gradient(to top,#510C76, #ffffff)',
-    color: '#510C76',
+    color: '#800080',
     fontFamily: 'Quincy CF, sans-serif',
     padding: '20px',
   },
@@ -124,7 +124,7 @@ const styles = {
   button: {
     padding: '10px',
     fontSize: '16px',
-    backgroundColor: '#510C76',
+    backgroundColor: '#800080',
     color: '#ffffff',
     border: 'none',
     borderRadius: '4px',
@@ -139,7 +139,7 @@ const styles = {
     color: '#fff',
   },
   link: {
-    color: '#510C76',
+    color: '#800080',
     textDecoration: 'none',
   },
 };
