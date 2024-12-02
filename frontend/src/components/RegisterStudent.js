@@ -83,9 +83,9 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    background: 'linear-gradient(135deg,#510C76, #ffffff)',
-    color: '#fff',
-    fontFamily: 'Arial, sans-serif',
+    background: 'linear-gradient(to top,#510C76, #ffffff)',
+    color: '#510C76',
+    fontFamily: 'Quincy CF, sans-serif',
     padding: '20px',
   },
   arrowContainer: {
@@ -97,7 +97,7 @@ const styles = {
   arrowIcon: {
     width: '24px',
     height: '24px',
-    color: '#fff',
+    color: '#000',
   },
   cardCentered: {
     border: '1px solid rgba(255, 255, 255, 0.2)',
@@ -105,9 +105,9 @@ const styles = {
     width: '400px',
     borderRadius: '12px',
     textAlign: 'center',
-    backgroundColor: '#cbaacb',
-    boxShadow: '0 6px 16px rgba(0, 0, 0, 0.4)',
-    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+    backgroundColor: '#000000',
+    boxShadow: '0 6px 30px rgba(0, 0, 0, 0.4)',
+    transition: 'transform 0.3s ease',
     cursor: 'pointer',
   },
   form: {
@@ -124,7 +124,7 @@ const styles = {
   button: {
     padding: '10px',
     fontSize: '16px',
-    backgroundColor: '#800080',
+    backgroundColor: '#510C76',
     color: '#ffffff',
     border: 'none',
     borderRadius: '4px',
@@ -139,7 +139,7 @@ const styles = {
     color: '#fff',
   },
   link: {
-    color: '#ffccff',
+    color: '#510C76',
     textDecoration: 'none',
   },
 };
