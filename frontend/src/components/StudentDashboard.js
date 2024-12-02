@@ -49,6 +49,7 @@ function StudentDashboard() {
           Your Orders
         </button>
       </div>
+      <div style={styles.searchContainer}>
       <input
         type="text"
         placeholder="Search for clubs..."
@@ -56,6 +57,7 @@ function StudentDashboard() {
         onChange={handleSearch}
         style={styles.searchBar}
       />
+      </div>
       <div style={styles.clubList}>
         {filteredClubs.length === 0 ? (
           <p>No clubs found</p>
@@ -82,12 +84,12 @@ function StudentDashboard() {
 const styles = {
   container: {
     padding: '20px',
-    fontFamily: 'Argent CF',
-    background: 'linear-gradient(135deg,#510C76, #ffffff)',
+    fontFamily: 'Argent CF, sans-serif',
+    background: 'linear-gradient(to top,#510C76, #ffffff)',
     minHeight: '100vh',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignItems: 'center',
   },
   header: {
@@ -95,41 +97,64 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
+    maxWidth: '1200px',
     marginBottom: '20px',
   },
   welcome: {
-    fontSize: '21px',
-    color: '#080808',
-    marginLeft: '10px',
+    fontSize: '40px',
+    fontWeight: 'bold',
+    color: '#510C76',
+    marginBottom: '10px',
+    textAlign: 'center',
   },
   orderButton: {
     padding: '10px 20px',
-    backgroundColor: '#800080',
+    backgroundColor: '#000',
     color: '#fff',
     border: 'none',
+    borderRadius: '12px',
     cursor: 'pointer',
     marginRight: '10px',
+    marginTop: '10px',
+    fontSize: '16px',
+    boxShadow: '0 6px 20px rgba(0,0,0,0.4)',
+
+  },
+  searchContainer: {
+    width: '100%',
+    maxWidth: '800px',
+    margin: '20px 0',
+    display: 'flex',
+    justifyContent: 'center',
   },
   searchBar: {
     width: '100%',
     padding: '10px',
-    margin: '10px 0',
+    margin: '10px',
     fontSize: '16px',
+    borderRadius: '12px',
+    border: '1px solid #000',
+    boxShadow: '0 6px 30px rgba(0, 0, 0, 0.4)',
+    outline: 'none',
   },
   clubList: {
     display: 'flex',
     flexWrap: 'wrap',
-    gap: '15px',
+    gap: '25px',
     justifyContent: 'center',
+    width: '100%',
+    maxWidth: '1800px',
+    marginTop: '20px',
   },
   clubCard: {
     width: '150px',
     padding: '10px',
     textAlign: 'center',
-    boxShadow: '0 0 10px rgba(0,0,0,0.1)',
+    boxShadow: '0 6px 20px rgba(0,0,0,0.4)',
     cursor: 'pointer',
     backgroundColor: '#fff',
     borderRadius: '10px',
+    transform: 'transform 0.2s ease, scale(1.05)',
   },
   clubImage: {
     width: '100%',
@@ -143,10 +168,13 @@ const styles = {
   },
  logoutButton: {
     padding: '10px',
-    backgroundColor: '#800080',
+    backgroundColor: '#000',
     color: '#fff',
     border: 'none',
+    borderRadius: '12px',
+    boxShadow: '0 6px 20px rgba(0,0,0,0.4)',
     cursor: 'pointer',
+    marginTop: '20px',
     marginBottom: '20px',
     alignSelf: 'flex-end',
   },
