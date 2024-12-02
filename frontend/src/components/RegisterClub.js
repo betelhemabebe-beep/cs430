@@ -197,6 +197,7 @@ const styles = {
   link: {
     color: '#800080',
     textDecoration: 'none',
+    fontWeight: 'bold',
   },
 };
 
