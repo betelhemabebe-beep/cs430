@@ -124,9 +124,11 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'column',
+    textAlign: 'center',
     minHeight: '100vh',
-    background: 'linear-gradient(135deg,#510C76, #ffffff)',
-    fontFamily: 'Arial, sans-serif',
+    background: 'linear-gradient(to top,#510C76, #ffffff)',
+    fontFamily: 'Quincy CF, sans-serif',
     position: 'relative',
   },
   arrowContainer: {
@@ -138,15 +140,17 @@ const styles = {
   arrowIcon: {
     width: '24px',
     height: '24px',
-    color: '#fff',
+    color: '#000',
   },
   card: {
     width: '400px',
     padding: '20px',
+    border: '1px solid rgba(255, 255, 255, 0.2)',
     borderRadius: '12px',
     boxShadow: '0 6px 16px rgba(0, 0, 0, 0.2)',
-    backgroundColor: '#cbaacb',
+    backgroundColor: '#000000',
     textAlign: 'center',
+    transition: 'transform 0.3s ease',
   },
   title: {
     fontSize: '24px',
@@ -160,7 +164,7 @@ const styles = {
   input: {
     padding: '10px',
     marginBottom: '15px',
-    borderRadius: '8px',
+    borderRadius: '12px',
     border: '1px solid rgba(255, 255, 255, 0.5)',
     fontSize: '16px',
     outline: 'none',
@@ -168,7 +172,7 @@ const styles = {
   textarea: {
     padding: '10px',
     marginBottom: '15px',
-    borderRadius: '8px',
+    borderRadius: '12px',
     border: '1px solid rgba(255, 255, 255, 0.5)',
     fontSize: '16px',
     minHeight: '80px',
@@ -181,7 +185,7 @@ const styles = {
     backgroundColor: '#800080',
     color: '#ffffff',
     border: 'none',
-    borderRadius: '8px',
+    borderRadius: '12px',
     cursor: 'pointer',
     marginTop: '10px',
     transition: 'background-color 0.3s ease',
@@ -193,7 +197,6 @@ const styles = {
   link: {
     color: '#800080',
     textDecoration: 'none',
-    fontWeight: 'bold',
   },
 };
 
