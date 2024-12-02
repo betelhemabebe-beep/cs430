@@ -114,9 +114,9 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    background: 'linear-gradient(135deg,#510C76, #ffffff)',
-    color: '#fff',
-    fontFamily: 'Arial, sans-serif',
+    background: 'linear-gradient(to top,#510C76, #ffffff)',
+    color: '#510C76',
+    fontFamily: 'Quincy CF, sans-serif',
     padding: '20px',
   },
   header: {
@@ -128,23 +128,25 @@ const styles = {
   },
   backIcon: {
     position: 'absolute',
+    top: '20px',
     left: '20px',
     width: '24px',
     height: '24px',
     cursor: 'pointer',
-    color: '#fff',
+    color: '#000',
   },
   title: {
     fontSize: '2.5em',
     marginBottom: '10px',
-    color: '#800080',
+    color: '#510C76',
     flex: 1,
     textAlign: 'center',
   },
   description: {
-    color: '#fff',
+    color: '#000',
     marginBottom: '20px',
     fontSize: '1.2em',
+    fontWeight: 'bold',
     textAlign: 'center',
     maxWidth: '600px',
   },
@@ -157,7 +159,7 @@ const styles = {
   label: {
     display: 'block',
     marginBottom: '5px',
-    color: '#800080',
+    color: '#510C76',
     fontWeight: 'bold',
   },
   input: {
@@ -179,13 +181,14 @@ const styles = {
   },
   orderButton: {
     padding: '10px 20px',
-    backgroundColor: '#800080',
+    backgroundColor: '#000000',
     color: '#fff',
     border: 'none',
-    borderRadius: '8px',
+    borderRadius: '12px',
     cursor: 'pointer',
     fontSize: '1em',
-    transition: 'background-color 0.3s ease',
+    transform: 'transform 0.34s ease, scale(1.05)',
+    boxShadow: '0 6px 20px rgba(0,0,0,0.4)',
   },
 };
 
