@@ -160,7 +160,9 @@ const styles = {
     width: '100%',
     height: '100px',
     objectFit: 'cover',
+    border: '1px solid #000',
     borderRadius: '10px',
+    boxShadow: '0 3px 8px rgba(0,0,0,0.2)',
   },
   clubName: {
     fontSize: '18px',
